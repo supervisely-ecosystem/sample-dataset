@@ -12,7 +12,10 @@
   "task_location": "workspace_tasks",
   "icon": "https://i.imgur.com/L25Giwq.png",
   "icon_background": "#FFFFFF",
-  "disable_stop": true
+  "disable_stop": true,
+  "context_menu": {
+    "target": ["images_dataset"]
+  }
 }
 
 
