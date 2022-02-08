@@ -4,10 +4,6 @@ import supervisely as sly
 import sly_globals as g
 
 
-def init_context(data, team_id, workspace_id):
-    data["teamId"] = team_id
-    data["workspaceId"] = workspace_id
-
 @g.my_app.callback("sample_dataset")
 @sly.timeit
 def sample_dataset(api: sly.Api, task_id, context, state, app_logger):
@@ -65,12 +61,11 @@ def main():
         "modal.state.slyProjectId": g.PROJECT_ID
     })
 
-    data = {}
+    data = {"workspaceId": g.WORKSPACE_ID}
     state = {}
-    
-    init_context(data, g.TEAM_ID, g.WORKSPACE_ID)
 
-    g.my_app.run(initial_events=[{"command": "sample_dataset"}])
+
+    g.my_app.run(data=data, initial_events=[{"command": "sample_dataset"}])
 
 
 if __name__ == '__main__':
