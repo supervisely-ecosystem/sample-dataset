@@ -51,7 +51,7 @@ def sample_dataset(api: sly.Api, task_id, context, state, app_logger):
     #         upload_new_anns(api, new_video_infos, ann)
     #         progress.iter_done_report()
 
-    g.my_app.stop()
+    # g.my_app.stop()
 
 
 def main():

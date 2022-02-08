@@ -8,7 +8,6 @@
   "docker_image": "supervisely/base-py-sdk:6",
   "main_script": "src/main.py",
   "gui_template": "src/gui.html",
-  "gui_template_state": {"samplePercent":  20, "dstProjectMode": "existingProject"},
   "task_location": "workspace_tasks",
   "icon": "https://i.imgur.com/L25Giwq.png",
   "icon_background": "#FFFFFF",
