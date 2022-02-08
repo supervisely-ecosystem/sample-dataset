@@ -11,6 +11,7 @@ def sample_dataset(api: sly.Api, task_id, context, state, app_logger):
     project = api.project.get_info_by_id(g.PROJECT_ID)
     meta_json = api.project.get_meta(g.PROJECT_ID)
     meta = sly.ProjectMeta.from_json(meta_json)
+    app_logger.warn('sample_percent:', g.sample_percent)
 
 
     # splitted_project_name = project.name + g.new_project_suffix
