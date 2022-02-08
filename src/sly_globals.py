@@ -11,3 +11,4 @@ WORKSPACE_ID = int(os.environ['context.workspaceId'])
 PROJECT_ID = int(os.environ['modal.state.slyProjectId'])
 
 sample_percent = int(os.environ['modal.state.samplePercent'])
+save_mode = os.environ['modal.state.dstProjectMode']

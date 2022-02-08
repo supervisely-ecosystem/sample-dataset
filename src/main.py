@@ -4,6 +4,10 @@ import supervisely as sly
 import sly_globals as g
 
 
+def init_context(data, team_id, workspace_id):
+    data["teamId"] = team_id
+    data["workspaceId"] = workspace_id
+
 @g.my_app.callback("sample_dataset")
 @sly.timeit
 def sample_dataset(api: sly.Api, task_id, context, state, app_logger):
@@ -11,7 +15,8 @@ def sample_dataset(api: sly.Api, task_id, context, state, app_logger):
     project = api.project.get_info_by_id(g.PROJECT_ID)
     meta_json = api.project.get_meta(g.PROJECT_ID)
     meta = sly.ProjectMeta.from_json(meta_json)
-    app_logger.warn('sample_percent:', g.sample_percent)
+
+
 
 
     # splitted_project_name = project.name + g.new_project_suffix
@@ -59,6 +64,12 @@ def main():
         "WORKSPACE_ID": g.WORKSPACE_ID,
         "modal.state.slyProjectId": g.PROJECT_ID
     })
+
+    data = {}
+    state = {}
+    
+    init_context(data, g.TEAM_ID, g.WORKSPACE_ID)
+
     g.my_app.run(initial_events=[{"command": "sample_dataset"}])
 
 
