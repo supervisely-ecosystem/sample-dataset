@@ -1,0 +1,37 @@
+<sly-card>
+  <sly-field title="Result project"
+           description="Define destination project and dataset">
+    <div class="fflex">
+
+        <el-radio class="radio"
+                  v-model="state.dstProjectMode"
+                  label="newProject"
+                  @input="(val) => {
+                    if (val === 'newProject') {
+                        state.dstDatasetMode = 'newDataset';
+                    }
+                  }"
+        >
+            Create new project
+        </el-radio>
+        <el-radio class="radio" v-model="state.dstProjectMode" label="existingProject">Add to existing project
+        </el-radio>
+    </div>
+    <div class="mt5">
+        <div v-if="state.dstProjectMode === 'newProject'">
+            <el-input placeholder="Please input project name" v-model="state.dstProjectName"></el-input>
+            <div class="mt5" style="color: #5a6772">
+                <i>If project with the same name already exists, a new name will be generated automatically</i>
+            </div>
+        </div>
+        <div v-if="state.dstProjectMode === 'existingProject'">
+            <sly-select-project
+                    :workspace-id="data.workspaceId"
+                    :project-id.sync="state.dstProjectId"
+                    :options="{showLabel: false, availableTypes: ['images']}"
+            >
+            </sly-select-project>
+        </div>
+    </div>
+  </sly-field>
+</sly-card>

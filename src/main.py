@@ -2,6 +2,7 @@
 import os
 import supervisely as sly
 import sly_globals as g
+import init_ui
 
 
 @g.my_app.callback("sample_dataset")
@@ -58,14 +59,17 @@ def main():
     sly.logger.info("Script arguments", extra={
         "TEAM_ID": g.TEAM_ID,
         "WORKSPACE_ID": g.WORKSPACE_ID,
-        "modal.state.slyProjectId": g.PROJECT_ID
+        "PROJECT_ID": g.PROJECT_ID
     })
 
-    data = {"workspaceId": g.WORKSPACE_ID}
+    data = {}
     state = {}
 
+    init_ui.init_context(data, g.TEAM_ID, g.WORKSPACE_ID)
+    init_ui.init(data, state)
 
-    g.my_app.run(data=data, state=state, initial_events=[{"command": "sample_dataset"}])
+    g.my_app.compile_template(g.root_source_dir)
+    g.my_app.run(data=data, state=state)
 
 
 if __name__ == '__main__':
