@@ -65,7 +65,7 @@ def main():
     state = {}
 
 
-    g.my_app.run(data=data, initial_events=[{"command": "sample_dataset"}])
+    g.my_app.run(data=data, state=state, initial_events=[{"command": "sample_dataset"}])
 
 
 if __name__ == '__main__':
