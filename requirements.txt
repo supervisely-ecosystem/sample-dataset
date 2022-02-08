@@ -1,0 +1,5 @@
+supervisely==6.7.0
+jsonpatch
+fastapi
+psutil
+jinja2
