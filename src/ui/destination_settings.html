@@ -1,6 +1,6 @@
-<sly-card>
+<sly-card class="mt10">
   <sly-field title="Result project"
-           description="Define destination project and dataset">
+           description="Define destination project">
     <div class="fflex">
 
         <el-radio class="radio"
@@ -34,4 +34,23 @@
         </div>
     </div>
   </sly-field>
+
+    <el-button
+            class="regular mr10" type="primary"
+            style="align-self: flex-end;"
+            :loading="data.processing === true"
+            :disabled="(state.dstProjectMode === 'newProject' && state.dstProjectName.length === 0) ||
+                       (state.dstProjectMode === 'existingProject' && !state.dstProjectId)"
+
+            @click="data.processing = true; command('sample_dataset')">
+        <i class="zmdi zmdi-play mr5"></i> Start import
+    </el-button>
+
+    <div class="mt5" v-if="state.dstProjectMode === 'newProject' && state.dstProjectName.length === 0" style="color: red">
+        Please, define the name of a new project
+    </div>
+    <div class="mt5" v-if="state.dstProjectMode === 'existingProject' && !state.dstProjectId" style="color: red">
+        Please, select one of the existing projects
+    </div>
+
 </sly-card>

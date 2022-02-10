@@ -15,5 +15,4 @@ TEAM_ID = int(os.environ['context.teamId'])
 WORKSPACE_ID = int(os.environ['context.workspaceId'])
 PROJECT_ID = int(os.environ['context.projectId'])
 
-# sample_percent = int(os.environ['gui.state.samplePercent'])
-# save_mode = os.environ['gui.state.dstProjectMode']
+new_project = 'newProject'
