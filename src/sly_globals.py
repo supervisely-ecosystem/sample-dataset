@@ -3,6 +3,7 @@ import os, sys
 from pathlib import Path
 import supervisely as sly
 
+
 my_app = sly.AppService()
 api: sly.Api = my_app.public_api
 
@@ -15,4 +16,3 @@ TEAM_ID = int(os.environ['context.teamId'])
 WORKSPACE_ID = int(os.environ['context.workspaceId'])
 PROJECT_ID = os.environ['modal.state.slyProjectId']
 
-new_project = 'newProject'
