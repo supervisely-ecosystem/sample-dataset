@@ -20,14 +20,18 @@ def sample_dataset(api: sly.Api, task_id, context, state, app_logger):
     api.project.merge_metas(g.PROJECT_ID, dst_project_id)
 
     datasets = api.dataset.get_list(g.PROJECT_ID)
-    progress_items_cb = init_ui.get_progress_cb(api, task_id, 1, "Finished", len(datasets))
-    for scr_dataset in datasets:
+    progress_items_cb = init_ui.get_progress_cb(api, task_id, 1,
+                                                "Copy sample images from {} datasets:".format(len(datasets)),
+                                                len(datasets))
 
+    images_cnt = 0
+    for scr_dataset in datasets:
         image_infos = api.image.get_list(scr_dataset.id)
         image_ids = [image_info.id for image_info in image_infos]
 
         sample_choose = round(len(image_ids) * sample_percent)
         sample_ids = random.sample(image_ids, sample_choose)
+        images_cnt += len(sample_ids)
 
         curr_dst_ds = api.dataset.create(dst_project_id, scr_dataset.name, change_name_if_conflict=True)
         for sample_batch in sly.batched(sample_ids):
@@ -37,10 +41,13 @@ def sample_dataset(api: sly.Api, task_id, context, state, app_logger):
 
     init_ui.reset_progress(api, task_id, 1)
 
+    g.my_app.show_modal_window(
+        "{} sample images from {} datasets has been successfully copied. You can continue copy other images to the same "
+        "or new project. If you've finished with the app, stop it manually.".format(
+            images_cnt, len(datasets)))
+
     api.app.set_field(task_id, "data.processing", False)
     api.task.set_output_project(task_id, dst_project_id, project_name)
-
-    #g.my_app.stop()
 
 
 def main():
