@@ -13,6 +13,6 @@ sys.path.append(root_source_dir)
 TASK_ID = int(os.environ["TASK_ID"])
 TEAM_ID = int(os.environ['context.teamId'])
 WORKSPACE_ID = int(os.environ['context.workspaceId'])
-PROJECT_ID = int(os.environ['modal.state.projectId'])
+PROJECT_ID = os.environ['modal.state.slyProjectId']
 
 new_project = 'newProject'
