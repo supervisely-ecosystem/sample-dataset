@@ -53,4 +53,9 @@
         Please, select one of the existing projects
     </div>
 
+    <div v-if="data.progressName1" class="mt10">
+        <div>{{data.progressName1}}: {{data.currentProgressLabel1}} / {{data.totalProgressLabel1}}</div>
+        <el-progress :percentage="Math.round(data.currentProgress1 * 100 / data.totalProgress1)"></el-progress>
+    </div>
+
 </sly-card>
