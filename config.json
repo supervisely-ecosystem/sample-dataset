@@ -12,7 +12,7 @@
   "icon": "https://i.imgur.com/L25Giwq.png",
   "icon_background": "#FFFFFF",
   "context_menu": {
-    "target": ["images_dataset"]
+    "target": ["images_project"]
   }
 }
 
