@@ -18,9 +18,12 @@ def get_sample_ids(api, ds_id, sample_percent):
 @sly.timeit
 def sample_dataset(api: sly.Api, task_id, context, state, app_logger):
 
+    src_project = api.project.get_info_by_id(g.PROJECT_ID)
     sample_percent = state['samplePercent'] * 0.01
     project_name = state['dstProjectName']
     dst_project_id = state["dstProjectId"]
+
+    init_ui.init_project_fields(api, task_id, src_project)
 
     if dst_project_id is None:
         dst_project = api.project.create(g.WORKSPACE_ID, project_name, change_name_if_conflict=True)

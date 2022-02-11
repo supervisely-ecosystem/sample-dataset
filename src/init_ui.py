@@ -14,6 +14,7 @@ def init_options(data, state):
     state["dstProjectMode"] = "newProject"
     state["dstProjectName"] = "sample_project"
     state["dstProjectId"] = None
+    data["srcProjectName"] = None
 
     data["processing"] = False
 
@@ -58,3 +59,15 @@ def get_progress_cb(api, task_id, index, message, total, is_size=False, func=upd
 
 def reset_progress(api, task_id, index):
     _set_progress(index, api, task_id, None, 0, 0, 0, 0)
+
+
+def init_project_fields(api, task_id, src_project):
+    fields = [
+        {"field": "data.srcProjectType", "payload": src_project.type},
+        {"field": "data.srcProjectName", "payload": src_project.name},
+        {"field": "data.projectId", "payload": src_project.id},
+        {"field": "data.srcProjectPreviewUrl", "payload": api.image.preview_url(src_project.reference_image_url,
+                                                                                      100, 100)},
+        {"field": "data.finished", "payload": False}
+    ]
+    api.app.set_fields(task_id, fields)
