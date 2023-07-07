@@ -9,7 +9,7 @@
   "main_script": "src/main.py",
   "gui_template": "src/gui.html",
   "task_location": "workspace_tasks",
-  "icon": "https://i.imgur.com/L25Giwq.png",
+  "icon": "https://github.com/supervisely-ecosystem/sample-dataset/assets/48245050/69b4f4c8-6bcb-4f03-9970-005dca87196d",
   "icon_background": "#FFFFFF",
   "context_menu": {
     "target": [
